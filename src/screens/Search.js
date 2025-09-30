@@ -22,7 +22,6 @@ const Search = () => {
 
     return (
         <div>
-            <h1>Hello</h1>
             <input title={"search"} onChange={(event)=>{
                 apiCall(event.target.value);
             }}/>
