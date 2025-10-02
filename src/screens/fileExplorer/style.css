@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+.container {
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    padding-right: 20px;
+}
+.child {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    margin-left: 40px;
+}
