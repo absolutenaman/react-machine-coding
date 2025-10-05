@@ -4,6 +4,7 @@ import Search from "./screens/Search";
 import ProgressBar from "./components/ProgressBar_Easy";
 import ProgressBarMedium from "./components/ProgressBar_Medium/ProgressBar_Medium";
 import FileExplorer from "./screens/fileExplorer/FileExplorer";
+import NestedCheckbox from "./screens/NestedCheckBoxes/NestedCheckBox";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
          <Route path={"/Search"} element={<Search/>}/>
          <Route path={"/ProgressBarEasy"} element={<ProgressBar/>}/>
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
-         <Route path={"/"} element={<FileExplorer/>}/>
+         <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
+         <Route path={"/"} element={<NestedCheckbox/>}/>
          </Routes>
     </BrowserRouter>
   );
