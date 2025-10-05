@@ -45,9 +45,14 @@ const updateRecursive = (item, isChecked, newData) => {
 const checkIfAllChildren = (newData) => {
 
     const veriFyAllChild = (item) => {
-        if (!item.children) return newData[item.id] || false;
-        let isChecked;
-        isChecked = item.children.every((item) => veriFyAllChild(item))
+        if (!item.children) {
+            return newData[item.id] || false;
+        }
+        let isChecked = true;
+        for (const child of item.children) {
+            const childChecked = veriFyAllChild(child);
+            if (!childChecked) isChecked = false;
+        }
         newData[item.id] = isChecked
         return isChecked
     }
@@ -64,7 +69,7 @@ const onClickHandler = (item, setData, data, isChecked) => {
 
     // 3. Set the new state
 
-    // newData = checkIfAllChildren(newData)
+    newData = checkIfAllChildren(newData)
     setData(newData);
 
 
@@ -74,10 +79,13 @@ const Checkboxes = ({CheckboxesData, setData, data}) => {
         <div>
             {
                 CheckboxesData.map((item) => {
-                    return <div>
-                        <input type="checkBox" checked={data[item.id]} onClick={(e) => {
+                    return <div key={item.id}>
+                        <label>
+                        <input type="checkBox" checked={data[item.id]} onChange={(e) => {
                             onClickHandler(item, setData, data, e.target.checked)
                         }}/> {item.label}
+                        </label>
+
                         {
                             item.children &&
                             <div style={{paddingLeft: 20}}>
