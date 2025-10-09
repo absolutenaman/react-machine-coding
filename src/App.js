@@ -5,6 +5,7 @@ import ProgressBar from "./components/ProgressBar_Easy";
 import ProgressBarMedium from "./components/ProgressBar_Medium/ProgressBar_Medium";
 import FileExplorer from "./screens/fileExplorer/FileExplorer";
 import NestedCheckbox from "./screens/NestedCheckBoxes/NestedCheckBox";
+import Chips from "./screens/Chips";
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
          <Route path={"/ProgressBarEasy"} element={<ProgressBar/>}/>
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
          <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
-         <Route path={"/"} element={<NestedCheckbox/>}/>
+         <Route path={"/NestedCheckbox"} element={<NestedCheckbox/>}/>
+         <Route path={"/"} element={<Chips/>}/>
          </Routes>
     </BrowserRouter>
   );
