@@ -6,7 +6,8 @@ import ProgressBarMedium from "./components/ProgressBar_Medium/ProgressBar_Mediu
 import FileExplorer from "./screens/fileExplorer/FileExplorer";
 import NestedCheckbox from "./screens/NestedCheckBoxes/NestedCheckBox";
 import Chips from "./screens/Chips";
-
+import ChattingAppWebsockets from "./screens/Websockets";
+import TrafficLight from "./screens/TrafficLigths/TrafficLights";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
          <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
          <Route path={"/NestedCheckbox"} element={<NestedCheckbox/>}/>
-         <Route path={"/"} element={<Chips/>}/>
+         <Route path={"/ChattingAppWebsockets"} element={<ChattingAppWebsockets/>}/>
+         <Route path={"/Chips"} element={<Chips/>}/>
+         <Route path={"/"} element={<TrafficLight/>}/>
          </Routes>
     </BrowserRouter>
   );

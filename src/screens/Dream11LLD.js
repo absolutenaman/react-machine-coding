@@ -57,9 +57,9 @@ console.log(result);
 }
 
 
-👉 This lets the interviewer check:
+This lets the interviewer check:
 
-    Data modeling (how players and rules are represented)
+Data modeling (how players and rules are represented)
 
 Implementation of multiple rules in a clean, extensible way
 
