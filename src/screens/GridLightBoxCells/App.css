@@ -2,15 +2,28 @@
     width: 300px;
     height: 100px;
     border: 1px solid black;
-    margin-right:20px ;
+    margin-right: 20px;
+    cursor: pointer;
 }
+
+.green-boxes {
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+    margin-right: 20px;
+    background-color: #00bb2d;
+    cursor: pointer;
+
+}
+
 .row {
     display: flex;
     flex-direction: row;
     padding: 20px;
 }
+
 .wrapper {
-    flex:1;
+    flex: 1;
     align-items: center;
     display: flex;
     flex-direction: column;

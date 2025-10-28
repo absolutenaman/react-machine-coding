@@ -36,7 +36,7 @@ function App() {
          <Route path={"/Chips"} element={<Chips/>}/>
          <Route path={"/TrafficLight"} element={<TrafficLight/>}/>
          <Route path={"/DataTable"} element={<DataTable data={sampleData}/>}/>
-         <Route path={"/"} element={<GridLightBoxCells/>}/>
+         <Route path={"/"} element={<GridLightBoxCells data={[[1, 2, 3], [1, 2, 3], [1, 2, 3]]}/>}/>
          </Routes>
     </BrowserRouter>
   );
