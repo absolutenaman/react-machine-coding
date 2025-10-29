@@ -1,114 +1,62 @@
+import "./styles.css"
 import {useState} from "react";
-import './styles.css'
 
-const CheckboxesData = [
-    {
+const data = [{
+    id: 0,
+    title: "Fruits",
+    isChecked: false,
+    children: [{
         id: 1,
-        label: "Fruits",
+        isChecked: false,
+        title: "Berreys",
+        children: []
+    }]
+},
+    {
+        id: 2,
+        title: "Vegetables",
         isChecked: false,
         children: [
-            {id: 2, label: "Apple", isChecked: false},
-            {id: 3, label: "Banana", isChecked: false},
             {
-                id: 4,
-                label: "Citrus",
+                id: 3,
+                title: "Lady finger",
                 isChecked: false,
-                children: [
-                    {id: 5, label: "Orange", isChecked: false},
-                    {id: 6, label: "Lemon", isChecked: false},
-                ],
-            },
-        ],
+                children: []
+            }
+        ]
     },
     {
-        id: 7,
-        label: "Vegetables",
+        id: 4,
+        title: "Canes",
         isChecked: false,
-        children: [
-            {id: 8, label: "Carrot", isChecked: false},
-            {id: 9, label: "Broccoli", isChecked: false},
-        ],
-    },
+        children: []
+    }
 ]
-const updateRecursive = (item, isChecked, newData) => {
-    // 1. Set the state for the current item
-    newData[item.id] = isChecked;
-
-    // 2. If it has children, recurse and update their state as well
-    if (item.children && item.children.length > 0) {
-        for (const child of item.children) {
-            updateRecursive(child, isChecked, newData);
-        }
-    }
-};
-
-const checkIfAllChildren = (newData) => {
-
-    const veriFyAllChild = (item) => {
-        if (!item.children) {
-            return newData[item.id] || false;
-        }
-        let isChecked = true;
-        for (const child of item.children) {
-            const childChecked = veriFyAllChild(child);
-            if (!childChecked) isChecked = false;
-        }
-        newData[item.id] = isChecked
-        return isChecked
-    }
-    CheckboxesData.forEach((item) => veriFyAllChild(item))
-    return newData
+const NestedCheckBox = () => {
+    const [filterData, setFilteredData] = useState(data);
+    return filterData.map((item, index) => {
+        return <CheckBox key={item.id} item={item}/>
+    })
 }
-const onClickHandler = (item, setData, data, isChecked) => {
-    // 1. Create an immutable copy of the state object
-    let newData = {...data};
+const clickHandler = (id) => {
 
-    // 2. Perform the recursive update on the copy, starting with the clicked item
-    updateRecursive(item, isChecked, newData);
-
-
-    // 3. Set the new state
-
-    newData = checkIfAllChildren(newData)
-    setData(newData);
-
-
-};
-const Checkboxes = ({CheckboxesData, setData, data}) => {
-    return (
-        <div>
-            {
-                CheckboxesData.map((item) => {
-                    return <div key={item.id}>
-                        <label>
-                        <input type="checkBox" checked={data[item.id]} onChange={(e) => {
-                            onClickHandler(item, setData, data, e.target.checked)
-                        }}/> {item.label}
-                        </label>
-
-                        {
-                            item.children &&
-                            <div style={{paddingLeft: 20}}>
-                                <Checkboxes CheckboxesData={item.children} setData={setData} data={data}/>
-                            </div>
-                        }
-                    </div>
+}
+const CheckBox = ({item}) => {
+    console.log("!!! item", item)
+    return <div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+            <input onClick={() => clickHandler(item.id)} type="checkBox" value={item.isChecked}/>
+            <div>{item.title}</div>
+        </div>
+        {
+            item?.children?.length > 0 &&
+            <div className="child">
+                {item?.children.map((child) => {
+                    return <CheckBox item={child}/>
                 })
-            }
-        </div>
-    );
-};
-
-export default function NestedCheckbox() {
-    const [data, setData] = useState({1: true})
-    return (
-        <div>
-            <h2>Nested Checkbox</h2>
-            <Checkboxes
-                CheckboxesData={CheckboxesData}
-                setData={setData}
-                data={data}
-            />
-        </div>
-    );
+                }
+            </div>
+        }
+    </div>
 }
+export default NestedCheckBox;
