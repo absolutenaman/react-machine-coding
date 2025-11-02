@@ -63,22 +63,30 @@ const checkAllChildren = (newCheckedData, item, value) => {
 const verifyAllChild = (newCheckedData) => {
   const verify = (newCheckedData, item) => {
     if (item?.children?.length == 0) return newCheckedData.has(item.id);
-    let flag=true;
+    let flag = true;
     for (let i = 0; i < item?.children?.length; i++) {
-        flag=flag * newCheckedData.has(item.children[i].id);
-        if(item.children[i].children.length >0){
-            flag=flag * verify(item.children[i])
-        }
-        if(flag)
-            newCheckedData.add(item.id)
+        let res = verify(newCheckedData,item.children[i]);
+        flag=flag && res
+      }
+    if (flag) {
+      newCheckedData.add(item.id);
+      return true;
+    } else {
+      newCheckedData.delete(item.id);
+      return false;
     }
   };
-  for(let i=0;i<CheckboxesData.length;i++) verify(newCheckedData, CheckboxesData[i]);
+  for (let i = 0; i < CheckboxesData.length; i++) {
+    console.log(CheckboxesData[i]);
+    verify(newCheckedData, CheckboxesData[i]);
+  }
 };
 const onClickHandler = (item, checkedData, setCheckedData, e) => {
   let newCheckedData = new Set(checkedData);
   checkAllChildren(newCheckedData, item, e.target.checked);
+  console.log(newCheckedData);
   verifyAllChild(newCheckedData);
+  console.log(newCheckedData);
   setCheckedData(newCheckedData);
 };
 const CheckBox = ({ item, checkedData, setCheckedData }) => {
