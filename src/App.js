@@ -10,6 +10,9 @@ import ChattingAppWebsockets from "./screens/Websockets";
 import TrafficLight from "./screens/TrafficLigths/TrafficLights";
 import DataTable from "./screens/Data Table/DataTable";
 import GridLightBoxCells from "./screens/GridLightBoxCells/GridLightBoxCells";
+import DivGame from "./screens/DivGame";
+import TabsSwitcher from "./screens/tabs/TabSwitcher";
+
 
 const sampleData = [
     { id: 1, name: "Alice", age: 25 },
@@ -31,11 +34,13 @@ function App() {
          <Route path={"/ProgressBarEasy"} element={<ProgressBar/>}/>
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
          <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
-         <Route path={"/"} element={<NestedCheckbox/>}/>
+         <Route path={"/NestedCheckbox"} element={<NestedCheckbox/>}/>
          <Route path={"/ChattingAppWebsockets"} element={<ChattingAppWebsockets/>}/>
          <Route path={"/Chips"} element={<Chips/>}/>
          <Route path={"/TrafficLight"} element={<TrafficLight/>}/>
          <Route path={"/DataTable"} element={<DataTable data={sampleData}/>}/>
+         <Route path={"/TabsSwitcher"} element={<TabsSwitcher/>}/>
+         <Route path={"/DivGame"} element={<DivGame/>}/>
          <Route path={"/GridLightBoxCells"} element={<GridLightBoxCells data={[[1, 2, 3], [1, 2, 3], [1, 2, 3]]}/>}/>
          </Routes>
     </BrowserRouter>
