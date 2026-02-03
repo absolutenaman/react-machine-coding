@@ -12,6 +12,7 @@ import DataTable from "./screens/Data Table/DataTable";
 import GridLightBoxCells from "./screens/GridLightBoxCells/GridLightBoxCells";
 import DivGame from "./screens/DivGame";
 import TabsSwitcher from "./screens/tabs/TabSwitcher";
+import APiCallWithAbort from "./screens/ApiCallWithAbort/APiCallWithAbort";
 
 
 const sampleData = [
@@ -41,6 +42,7 @@ function App() {
          <Route path={"/DataTable"} element={<DataTable data={sampleData}/>}/>
          <Route path={"/TabsSwitcher"} element={<TabsSwitcher/>}/>
          <Route path={"/DivGame"} element={<DivGame/>}/>
+         <Route path={"/"} element={<APiCallWithAbort/>}/>
          <Route path={"/GridLightBoxCells"} element={<GridLightBoxCells data={[[1, 2, 3], [1, 2, 3], [1, 2, 3]]}/>}/>
          </Routes>
     </BrowserRouter>
