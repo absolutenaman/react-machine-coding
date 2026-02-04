@@ -35,14 +35,14 @@ function App() {
          <Route path={"/ProgressBarEasy"} element={<ProgressBar/>}/>
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
          <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
-         <Route path={"/NestedCheckbox"} element={<NestedCheckbox/>}/>
+         <Route path={"/"} element={<NestedCheckbox/>}/>
          <Route path={"/ChattingAppWebsockets"} element={<ChattingAppWebsockets/>}/>
          <Route path={"/Chips"} element={<Chips/>}/>
          <Route path={"/TrafficLight"} element={<TrafficLight/>}/>
          <Route path={"/DataTable"} element={<DataTable data={sampleData}/>}/>
          <Route path={"/TabsSwitcher"} element={<TabsSwitcher/>}/>
          <Route path={"/DivGame"} element={<DivGame/>}/>
-         <Route path={"/"} element={<APiCallWithAbort/>}/>
+         <Route path={"/APiCallWithAbort"} element={<APiCallWithAbort/>}/>
          <Route path={"/GridLightBoxCells"} element={<GridLightBoxCells data={[[1, 2, 3], [1, 2, 3], [1, 2, 3]]}/>}/>
          </Routes>
     </BrowserRouter>

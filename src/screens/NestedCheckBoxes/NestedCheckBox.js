@@ -1,120 +1,76 @@
 import "./styles.css";
-import { useState } from "react";
+import {useState} from "react";
 
 const CheckboxesData = [
-  {
-    id: 1,
-    label: "Fruits",
-    isChecked: false,
-    children: [
-      { id: 2, label: "Apple", isChecked: false, children: [] },
-      { id: 3, label: "Banana", isChecked: false, children: [] },
-      {
-        id: 4,
-        label: "Citrus",
+    {
+        id: 1,
+        label: "Fruits",
         isChecked: false,
         children: [
-          { id: 5, label: "Orange", isChecked: false, children: [] },
-          { id: 6, label: "Lemon", isChecked: false, children: [] },
+            {id: 2, label: "Apple", isChecked: false, children: []},
+            {id: 3, label: "Banana", isChecked: false, children: []},
+            {
+                id: 4,
+                label: "Citrus",
+                isChecked: false,
+                children: [
+                    {id: 5, label: "Orange", isChecked: false, children: []},
+                    {id: 6, label: "Lemon", isChecked: false, children: []},
+                ],
+            },
         ],
-      },
-    ],
-  },
-  {
-    id: 7,
-    label: "Vegetables",
-    isChecked: false,
-    children: [
-      { id: 8, label: "Carrot", isChecked: false, children: [] },
-      { id: 9, label: "Broccoli", isChecked: false, children: [] },
-    ],
-  },
+    },
+    {
+        id: 7,
+        label: "Vegetables",
+        isChecked: false,
+        children: [
+            {id: 8, label: "Carrot", isChecked: false, children: []},
+            {id: 9, label: "Broccoli", isChecked: false, children: []},
+        ],
+    },
 ];
+
+
+
+const handleClickHandler = (isChecked, node, checkedData, setCheckedData) => {
+    updateChildren(isChecked, node, checkedData, setCheckedData);
+    setCheckedData(prev => {
+        return {...prev, [node.id]: isChecked}
+    })
+
+}
+const updateChildren = (isChecked, node, checkedData, setCheckedData) => {
+    node.children.forEach((item) => {
+        item?.children && updateChildren(isChecked, item, checkedData, setCheckedData)
+        setCheckedData(prev => ({...prev, [item.id]: isChecked}))
+    })
+}
+
+const RenderCheckBoxes = ({data, checkedData, setCheckedData}) => {
+    return <>
+        {
+            data.map((item) => {
+                return <div key={item.id}>
+                    <input type="checkbox" checked={checkedData?.[item?.id] || false}
+                           onChange={(e) => handleClickHandler(e.target.checked, item, checkedData, setCheckedData)}/>
+                    <span>{item.label}</span>
+                    <div style={{marginLeft: 10}}>
+                        {item.children && <RenderCheckBoxes data={item.children} checkedData={checkedData}
+                                                            setCheckedData={setCheckedData}/>}
+                    </div>
+
+                </div>
+            })
+        }
+    </>
+}
+
 const NestedCheckBox = () => {
-  const [checkedData, setCheckedData] = useState(new Set());
-  return CheckboxesData.map((item, index) => {
-    return (
-      <CheckBox
-        item={item}
-        key={index}
-        checkedData={checkedData}
-        setCheckedData={setCheckedData}
-      />
-    );
-  });
-};
-const checkAllChildren = (newCheckedData, item, value) => {
-  if (value) newCheckedData.add(item.id);
-  else {
-    newCheckedData.delete(item.id);
-  }
-  if (item?.children?.length > 0) {
-    for (let i = 0; i < item.children.length; i++) {
-      if (value) newCheckedData.add(item.children[i].id);
-      else {
-        newCheckedData.delete(item.children[i].id);
-      }
-      if (item.children[i]?.children?.length > 0) {
-        checkAllChildren(newCheckedData, item.children[i], value);
-      }
-    }
-  }
-};
-const verifyAllChild = (newCheckedData) => {
-  const verify = (newCheckedData, item) => {
-    if (item?.children?.length == 0) return newCheckedData.has(item.id);
-    let flag = true;
-    for (let i = 0; i < item?.children?.length; i++) {
-        let res = verify(newCheckedData,item.children[i]);
-        flag=flag && res
-      }
-    if (flag) {
-      newCheckedData.add(item.id);
-      return true;
-    } else {
-      newCheckedData.delete(item.id);
-      return false;
-    }
-  };
-  for (let i = 0; i < CheckboxesData.length; i++) {
-    console.log(CheckboxesData[i]);
-    verify(newCheckedData, CheckboxesData[i]);
-  }
-};
-const onClickHandler = (item, checkedData, setCheckedData, e) => {
-  let newCheckedData = new Set(checkedData);
-  checkAllChildren(newCheckedData, item, e.target.checked);
-  console.log(newCheckedData);
-  verifyAllChild(newCheckedData);
-  console.log(newCheckedData);
-  setCheckedData(newCheckedData);
-};
-const CheckBox = ({ item, checkedData, setCheckedData }) => {
-  return (
-    <div>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <input
-          onChange={(e) => onClickHandler(item, checkedData, setCheckedData, e)}
-          type="checkBox"
-          checked={checkedData.has(item.id)}
-        />
-        <div>{item.label}</div>
-      </div>
-      {item?.children?.length > 0 && (
-        <div className="child">
-          {item?.children.map((child, index) => {
-            return (
-              <CheckBox
-                key={index}
-                item={child}
-                checkedData={checkedData}
-                setCheckedData={setCheckedData}
-              />
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-};
+    const [checkedData, setCheckedData] = useState({1: true})
+    return <>
+        <RenderCheckBoxes data={CheckboxesData} checkedData={checkedData} setCheckedData={setCheckedData}/>
+    </>
+
+}
 export default NestedCheckBox;

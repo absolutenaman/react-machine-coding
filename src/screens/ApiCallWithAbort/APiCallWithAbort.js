@@ -10,7 +10,6 @@ const APiCallWithAbort = () => {
             setInput(e.target.value);
         }}/>
         <button >Submit</button>
-
     </>
 };
 
