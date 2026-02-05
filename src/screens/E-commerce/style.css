@@ -1,0 +1,11 @@
+.products-container{
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    height: 30px;
+}
+.container{
+    display: flex;
+    padding: 20px;
+    overflow: scroll;
+}

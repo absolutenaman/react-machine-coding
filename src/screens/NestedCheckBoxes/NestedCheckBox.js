@@ -32,11 +32,21 @@ const CheckboxesData = [
 ];
 
 
-
+const handleParentUpdate = (node, checkedData, setCheckedData) => {
+    if (node.children && node.children.length > 0) {
+        console.log("!!! node checkedData",node,checkedData)
+        checkedData[node.id]=node.children.every((item) => handleParentUpdate(item, checkedData, setCheckedData));
+        return checkedData[node.id]
+    } else {
+        return checkedData[node.id] || false;
+    }
+}
 const handleClickHandler = (isChecked, node, checkedData, setCheckedData) => {
     updateChildren(isChecked, node, checkedData, setCheckedData);
     setCheckedData(prev => {
-        return {...prev, [node.id]: isChecked}
+        const newState = {...prev, [node.id]: isChecked};
+        CheckboxesData.forEach((item) => handleParentUpdate(item, newState, setCheckedData))
+        return newState;
     })
 
 }

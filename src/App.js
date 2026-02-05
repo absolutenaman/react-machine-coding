@@ -13,6 +13,7 @@ import GridLightBoxCells from "./screens/GridLightBoxCells/GridLightBoxCells";
 import DivGame from "./screens/DivGame";
 import TabsSwitcher from "./screens/tabs/TabSwitcher";
 import APiCallWithAbort from "./screens/ApiCallWithAbort/APiCallWithAbort";
+import Landing from "./screens/E-commerce/Landing";
 
 
 const sampleData = [
@@ -35,7 +36,8 @@ function App() {
          <Route path={"/ProgressBarEasy"} element={<ProgressBar/>}/>
          <Route path={"/ProgressBarMedium"} element={<ProgressBarMedium/>}/>
          <Route path={"/FileExplorer"} element={<FileExplorer/>}/>
-         <Route path={"/"} element={<NestedCheckbox/>}/>
+         <Route path={"/NestedCheckbox"} element={<NestedCheckbox/>}/>
+         <Route path={"/"} element={<Landing/>}/>
          <Route path={"/ChattingAppWebsockets"} element={<ChattingAppWebsockets/>}/>
          <Route path={"/Chips"} element={<Chips/>}/>
          <Route path={"/TrafficLight"} element={<TrafficLight/>}/>
