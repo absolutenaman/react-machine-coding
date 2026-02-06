@@ -1,11 +1,26 @@
-.products-container{
-    display: flex;
-    flex-direction: column;
-    width: 30px;
+.container{
+    flex: 1;
+    overflow: scroll;
+}
+.container input {
+    border: 10px solid black;
+    width: 20%;
     height: 30px;
 }
-.container{
+.products-container  {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
-    overflow: scroll;
+    height: 800px;
+}
+.product {
+    border: 3px solid black;
+    width: 300px;
+    height: auto;
+}
+.image {
+    width: 200px;
+    height: 200px;
 }
